@@ -1,15 +1,10 @@
 import ProductCard from "@/components/shared/ProductCard";
 import { shopData } from "@/constants";
 
-interface PageProps {
-  params: {
-    id: string;
-  };
-}
-
-const page = ({ params }: PageProps) => {
+const page = async ({ params }: { params: Promise<{ id: string }> }) => {
+  const { id } = await params;
   // Filter the product data based on the `id` from params
-  const data = shopData.filter((item) => String(item.id) === params.id);
+  const data = shopData.filter((item) => String(item.id) === id);
 
   return (
     <div className="p-24 m-10 bg-white">

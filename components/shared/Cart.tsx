@@ -51,7 +51,7 @@ const Cart = () => {
             initial={{ x: 1000 }}
             animate={{ x: 0 }}
             transition={{ duration: 0.5, ease: "linear" }}
-            className="w-[500px] bg-white flex flex-col border h-full fixed right-0 top-0 z-50"
+            className="w-[500px] bg-white  justify-between flex flex-col border h-full fixed right-0 top-0 z-50"
           >
             <div className="w-full flex justify-between p-4 border-b ">
               <h1>Shopping Cart</h1>
@@ -62,7 +62,7 @@ const Cart = () => {
                 aria-label="Close cart"
               />
             </div>
-            <div className="p-2 overflow-y-scroll">
+            <div className="p-2 flex-1 overflow-y-scroll">
               {cartItems.map((item) => {
                 return (
                   <CartCard
@@ -77,7 +77,7 @@ const Cart = () => {
               })}
             </div>
 
-            <div className="flex-1 bg-white">
+            <div className=" bg-white">
               <div className="flex justify-between py-4 px-2 border-y text-lg">
                 <h1>SubTotal: </h1>
                 <h1>
