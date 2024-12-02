@@ -1,7 +1,13 @@
 import ProductCard from "@/components/shared/ProductCard";
 import { shopData } from "@/constants";
 
-const page = ({ params }: { params: { id: string } }) => {
+interface PageProps {
+  params: {
+    id: string;
+  };
+}
+
+const page = ({ params }: PageProps) => {
   // Filter the product data based on the `id` from params
   const data = shopData.filter((item) => String(item.id) === params.id);
 
