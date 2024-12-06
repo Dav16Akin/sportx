@@ -27,7 +27,9 @@ interface CustomerInfoFormProps {
   onInfoSubmit: (isComplete: boolean) => void;
 }
 
-const CustomerInfoForm : React.FC<CustomerInfoFormProps> = ({ onInfoSubmit }) => {
+const CustomerInfoForm: React.FC<CustomerInfoFormProps> = ({
+  onInfoSubmit,
+}) => {
   countries.registerLocale(en);
 
   const countryList = Object.entries(countries.getNames("en")).map(
@@ -40,7 +42,7 @@ const CustomerInfoForm : React.FC<CustomerInfoFormProps> = ({ onInfoSubmit }) =>
       email: "",
       firstname: "",
       lastname: "",
-      country: "Nigeria",
+      country: "",
       address: "",
       town: "",
       phonenumber: "",
@@ -48,7 +50,7 @@ const CustomerInfoForm : React.FC<CustomerInfoFormProps> = ({ onInfoSubmit }) =>
   });
 
   const onSubmit = async (values: z.infer<typeof UserValidation>) => {
-    console.log(values);
+    form.reset();
     onInfoSubmit(true);
   };
   return (
