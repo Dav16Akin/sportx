@@ -86,12 +86,9 @@ export const cartSlice = createSlice({
         );
       }
     });
-    builder.addCase(cartPriceTotal, (state, action) => {
-      state.priceTotal = state.cartItems.reduce(
-        (total, item) => total + item.quantity * item.price,
-        0
-      );
-    });
+    builder.addCase(clearCart, (state, action) => {
+      state.cartItems = []
+    })
   },
 });
 
@@ -112,8 +109,8 @@ export const reduceItemQuantityFromCart = createAction<{
   itemToReduce: any;
 }>("cart/REDUCE_ITEM_QUANTITY");
 
-export const cartPriceTotal = createAction<{
+export const clearCart = createAction<{
   cartItems: any[];
-}>("cart/CART_PRICE_TOTAL");
+}>("cart/CLEAR_CART");
 
 export default cartSlice.reducer;

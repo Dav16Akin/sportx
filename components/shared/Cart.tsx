@@ -9,6 +9,7 @@ import { AnimatePresence } from "motion/react";
 import { motion } from "motion/react";
 import CartCard from "./CartCard";
 import { Button } from "../ui/button";
+import Link from "next/link";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -89,8 +90,14 @@ const Cart = () => {
                 </h1>
               </div>
               <div className=" flex flex-col gap-4 p-4 w-full">
-                <Button className="rounded-full bg-red-500">VIEW CART</Button>
-                <Button className="rounded-full bg-red-500">CHECKOUT</Button>
+                <Link onClick={toggleCart} href="/cart" className="w-full">
+                  <Button className="rounded-full bg-red-500 w-full">
+                    VIEW CART
+                  </Button>
+                </Link>
+                <Link onClick={toggleCart} href="/checkout" className="w-full">
+                  <Button className="rounded-full bg-red-500 w-full">CHECKOUT</Button>
+                </Link>
               </div>
             </div>
           </motion.div>

@@ -8,7 +8,7 @@ import {
   addItemToCart,
   reduceItemQuantityFromCart,
 } from "@/state/Features/cart/cartSlice";
-import { toast } from "react-toastify";
+import { useToast } from "@/hooks/use-toast";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import Card from "./Card";
 import { shopData } from "@/constants";
@@ -22,6 +22,7 @@ interface Props {
 }
 
 const ProductCard = ({ id, imgUrl, name, price, category }: Props) => {
+  const { toast } = useToast();
   const cartItems = useSelector(
     (state: RootState) => state.cart.cart.cartItems
   );
@@ -35,7 +36,11 @@ const ProductCard = ({ id, imgUrl, name, price, category }: Props) => {
       })
     );
 
-    toast.success("Product added to cart!");
+    toast({
+      id: `${id}-added`,
+      title: "Product added to cart",
+      description: "You successfully added the product to your cart!",
+    });
   };
 
   const reduceQuantity = () => {
@@ -142,7 +147,7 @@ const ProductCard = ({ id, imgUrl, name, price, category }: Props) => {
               asperiores?
             </p>
           </TabsContent>
-          <TabsContent value="reviews">Change your password here.</TabsContent>
+          <TabsContent value="reviews">Coming soon</TabsContent>
         </Tabs>
       </div>
 

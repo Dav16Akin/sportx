@@ -5,8 +5,7 @@ import Topbar from "@/components/shared/Topbar";
 import { ReduxProvider } from "@/state/provider";
 import Cart from "@/components/shared/Cart";
 import Footer from "@/components/shared/Footer";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { Toaster } from "@/components/ui/toaster";
 import Waitlist from "@/components/shared/WaitList";
 
 export const metadata: Metadata = {
@@ -25,8 +24,8 @@ export default function RootLayout({
         <body className={`${montserrat.variable} ${oswald.variable} font-sans`}>
           <Topbar />
           <Cart />
-          <ToastContainer />
           <section className="flex flex-col">{children}</section>
+          <Toaster />
           <div className="w-full bg-white">
             <Waitlist mode="light" />
           </div>

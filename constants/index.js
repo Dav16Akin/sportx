@@ -13,10 +13,10 @@ export const categoryData = [
 ];
 
 export const shopData = [
-  { id: 1, name: "Black hoodie", price: 19.99, imgUrl: "/assets/men/man1.jpg" , category: "clothing" },
-  { id: 2, name: "Rain wear", price: 29.99, imgUrl: "/assets/men/man2.jpg"  , category: "clothing" },
-  { id: 3, name: "Gray tank top", price: 9.99, imgUrl: "/assets/men/man3.jpg"  , category: "clothing" },
-  { id: 4, name: "Gym fit", price: 39.99, imgUrl: "/assets/men/man4.jpg"  , category: "clothing" },
+  { id: 1, name: "Black hoodie", price: 19.99, imgUrl: "/assets/men/man1.jpg" , category: "clothing men" , },
+  { id: 2, name: "Rain wear", price: 29.99, imgUrl: "/assets/men/man2.jpg"  , category: "clothing men" },
+  { id: 3, name: "Gray tank top", price: 9.99, imgUrl: "/assets/men/man3.jpg"  , category: "clothing men" },
+  { id: 4, name: "Gym fit", price: 39.99, imgUrl: "/assets/men/man4.jpg"  , category: "clothing men" },
   { id: 5, name: "Nike", price: 9.99, imgUrl: "/assets/shoes/shoe2.jpg"  , category: "clothing shoes" },
   {
     id: 6,
@@ -58,24 +58,24 @@ export const shopData = [
     id: 12,
     name: "Sport wear pink",
     price: 51.99,
-    imgUrl: "/assets/women/women4.jpg",  category: "clothing"
+    imgUrl: "/assets/women/women4.jpg",  category: "clothing women"
   },
   {
     id: 13,
     name: "Sport wear/ skirt /white",
     price: 100.99,
-    imgUrl: "/assets/women/women1.jpg", category: "clothing"
+    imgUrl: "/assets/women/women1.jpg", category: "clothing women"
   },
   {
     id: 14,
     name: "Sport wear gray",
     price: 51.99,
-    imgUrl: "/assets/women/women2.jpg", category: "clothing"
+    imgUrl: "/assets/women/women2.jpg", category: "clothing women"
   },
   {
     id: 15,
     name: "Rain wear",
     price: 29.99,
-    imgUrl: "/assets/women/women3.jpg", category: "clothing"
+    imgUrl: "/assets/women/women3.jpg", category: "clothing women"
   },
 ];
