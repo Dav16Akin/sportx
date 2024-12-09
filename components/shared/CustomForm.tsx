@@ -1,5 +1,7 @@
 "use client";
 
+export const dynamic = "force-dynamic";
+
 import { PaymentValidation } from "@/lib/validations/payment";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";

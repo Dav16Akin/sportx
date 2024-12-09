@@ -1,5 +1,7 @@
 "use client";
 
+export const dynamic = "force-dynamic";
+
 import { clearCart } from "@/state/Features/cart/cartSlice";
 import { RootState } from "@/state/store";
 import { useRouter } from "next/navigation";

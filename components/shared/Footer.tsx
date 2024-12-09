@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { Facebook, Twitter, Linkedin, Github } from "lucide-react";
+import { Twitter, Linkedin, Github } from "lucide-react";
 
 // Chnage this with your own data
 const defaultNavigationLinks = [
