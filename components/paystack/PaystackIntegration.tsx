@@ -1,6 +1,8 @@
+"use client";
+
 import { clearCart } from "@/state/Features/cart/cartSlice";
 import { RootState } from "@/state/store";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import React from "react";
 import { PaystackButton } from "react-paystack";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,10 +14,13 @@ interface Props {
 
 const PaystackIntegration = ({ amount, email }: Props) => {
   const dispatch = useDispatch();
+  const router = useRouter();
+
   const cartItems = useSelector(
     (state: RootState) => state.cart.cart.cartItems
   );
-  const publicKey = process.env.NEXT_PUBLIC_PAYSTACK_KEY || ""; // Replace with your Paystack public key
+  
+  const publicKey = process.env.NEXT_PUBLIC_PAYSTACK_KEY || ""; // Ensure this is defined
 
   if (amount <= 0) {
     return <p>Invalid amount specified</p>;
@@ -26,8 +31,7 @@ const PaystackIntegration = ({ amount, email }: Props) => {
   const onSuccess = (reference: any) => {
     console.log("Payment successful:", reference);
     dispatch(clearCart({ cartItems }));
-    redirect("/")
-    // Handle post-payment actions like saving data to your database
+    router.push("/"); // Use router for client-side navigation
   };
 
   const onClose = () => {
