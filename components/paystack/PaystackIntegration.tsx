@@ -1,5 +1,6 @@
 import { clearCart } from "@/state/Features/cart/cartSlice";
 import { RootState } from "@/state/store";
+import { redirect } from "next/navigation";
 import React from "react";
 import { PaystackButton } from "react-paystack";
 import { useDispatch, useSelector } from "react-redux";
@@ -25,6 +26,7 @@ const PaystackIntegration = ({ amount, email }: Props) => {
   const onSuccess = (reference: any) => {
     console.log("Payment successful:", reference);
     dispatch(clearCart({ cartItems }));
+    redirect("/")
     // Handle post-payment actions like saving data to your database
   };
 

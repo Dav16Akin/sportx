@@ -15,17 +15,23 @@ import {
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import PaystackIntegration from "../paystack/PaystackIntegration";
+import { useSelector } from "react-redux";
+import { RootState } from "@/state/store";
 
-interface Props {
-  total: number;
-}
 
-const CustomForm = ({ total }: Props) => {
+
+const CustomForm = () => {
+  const cartItems = useSelector(
+    (state: RootState) => state.cart.cart.cartItems
+  );
+
   const form = useForm({
     resolver: zodResolver(PaymentValidation),
     defaultValues: {
       email: "",
-      amount: Number(total),
+      amount: Number(
+        cartItems.reduce((Total, item) => Total + item.quantity * item.price, 0)
+      ),
     },
   });
 
@@ -33,7 +39,8 @@ const CustomForm = ({ total }: Props) => {
   const amount = form.watch("amount");
 
   const onSubmit = async (values: z.infer<typeof PaymentValidation>) => {
-    values.amount = 0
+    form.reset();
+    values.amount = 0;
   };
 
   return (
