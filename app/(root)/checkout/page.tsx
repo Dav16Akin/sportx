@@ -1,5 +1,7 @@
 "use client";
 
+export const dynamic = "force-dynamic";
+
 import CustomerInfoForm from "@/components/shared/CustomerInfoForm";
 import CustomForm from "@/components/shared/CustomForm";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
