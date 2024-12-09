@@ -4,27 +4,33 @@ import CustomerInfoForm from "@/components/shared/CustomerInfoForm";
 import CustomForm from "@/components/shared/CustomForm";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { RootState } from "@/state/store";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 const page = () => {
   const [isInfoComplete, setIsInfoComplete] = useState(false);
   const [activeTab, setActiveTab] = useState("Information");
+  const [total, setTotal] = useState(0);
 
-  
   const cartItems = useSelector(
     (state: RootState) => state.cart.cart.cartItems
   );
 
-  let Total = cartItems.reduce(
-    (Total, item) => Total + item.quantity * item.price,
-    0
-  );
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      // Code that accesses `window` should be inside this block
+      const total = cartItems.reduce(
+        (Total, item) => Total + item.quantity * item.price,
+        0
+      );
+      setTotal(total);
+    }
+  }, [cartItems]);
 
   const handleInfoSubmit = (isComplete: boolean) => {
     setIsInfoComplete(isComplete);
     if (isComplete) {
-      setActiveTab("Payment"); // Switch to Payment tab
+      setActiveTab("Payment");
     }
   };
 
@@ -38,7 +44,11 @@ const page = () => {
           <TabsTrigger className="font-bold" value="Information">
             Information
           </TabsTrigger>
-          <TabsTrigger className="font-bold" value="Payment" disabled={!isInfoComplete}>
+          <TabsTrigger
+            className="font-bold"
+            value="Payment"
+            disabled={!isInfoComplete}
+          >
             Payment
           </TabsTrigger>
         </TabsList>
@@ -46,7 +56,7 @@ const page = () => {
           <CustomerInfoForm onInfoSubmit={handleInfoSubmit} />
         </TabsContent>
         <TabsContent value="Payment">
-          <CustomForm total={Total} />
+          <CustomForm total={total} />
         </TabsContent>
       </Tabs>
     </div>
