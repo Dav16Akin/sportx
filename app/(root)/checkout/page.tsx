@@ -17,7 +17,7 @@ const page = () => {
   );
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
+    if (typeof window !== "undefined" && cartItems) {
       // Code that accesses `window` should be inside this block
       const total = cartItems.reduce(
         (Total, item) => Total + item.quantity * item.price,
