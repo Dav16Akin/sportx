@@ -1,3 +1,5 @@
+"use client"
+
 import { UserValidation } from "@/lib/validations/user";
 import { zodResolver } from "@hookform/resolvers/zod";
 import React from "react";

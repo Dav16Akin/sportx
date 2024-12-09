@@ -1,12 +1,13 @@
+"use client";
+
 import { PaymentValidation } from "@/lib/validations/payment";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import React from "react";
+import React, { useMemo } from "react";
 import { useForm } from "react-hook-form";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -18,20 +19,25 @@ import PaystackIntegration from "../paystack/PaystackIntegration";
 import { useSelector } from "react-redux";
 import { RootState } from "@/state/store";
 
-
-
 const CustomForm = () => {
   const cartItems = useSelector(
     (state: RootState) => state.cart.cart.cartItems
   );
 
+  // Compute total amount safely
+  const totalAmount = useMemo(() => {
+    if (!cartItems) return 0;
+    return cartItems.reduce(
+      (total, item) => total + item.quantity * item.price,
+      0
+    );
+  }, [cartItems]);
+
   const form = useForm({
     resolver: zodResolver(PaymentValidation),
     defaultValues: {
       email: "",
-      amount: Number(
-        cartItems.reduce((Total, item) => Total + item.quantity * item.price, 0)
-      ),
+      amount: totalAmount,
     },
   });
 
@@ -40,7 +46,7 @@ const CustomForm = () => {
 
   const onSubmit = async (values: z.infer<typeof PaymentValidation>) => {
     form.reset();
-    values.amount = 0;
+    values.amount = 0; // Clear the amount after submission
   };
 
   return (
@@ -66,7 +72,12 @@ const CustomForm = () => {
             <FormItem>
               <FormLabel>Amount</FormLabel>
               <FormControl>
-                <Input type="number" placeholder="Amount..." {...field} />
+                <Input
+                  type="number"
+                  placeholder="Amount..."
+                  disabled
+                  value={totalAmount} // Lock the amount field
+                />
               </FormControl>
               <FormMessage />
             </FormItem>

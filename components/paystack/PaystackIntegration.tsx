@@ -19,7 +19,7 @@ const PaystackIntegration = ({ amount, email }: Props) => {
   const cartItems = useSelector(
     (state: RootState) => state.cart.cart.cartItems
   );
-  
+
   const publicKey = process.env.NEXT_PUBLIC_PAYSTACK_KEY || ""; // Ensure this is defined
 
   if (amount <= 0) {
@@ -42,7 +42,7 @@ const PaystackIntegration = ({ amount, email }: Props) => {
     email,
     amount: AMOUNT,
     publicKey,
-    text: "Pay Now",
+    text: "Confirm Payment",
     onSuccess,
     onClose,
   };
