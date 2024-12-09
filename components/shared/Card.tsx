@@ -50,7 +50,7 @@ const Card = ({ id, label, price, imgUrl, category }: Props) => {
           objectFit="cover"
           className="bg-gray-300 hover:scale-125 transition-all ease-in duration-300"
         />
-        <div onClick={addProductToCart} className="rounded-full bg-white z-30 shadow-lg absolute right-2 top-2 w-8 h-8 flex items-center justify-center">
+        <div  className="rounded-full bg-white z-30 shadow-lg absolute right-2 top-2 w-8 h-8 flex items-center justify-center">
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger>
