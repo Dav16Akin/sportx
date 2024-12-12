@@ -32,14 +32,14 @@ const CustomForm = () => {
     return cartItems.reduce(
       (total, item) => total + item.quantity * item.price,
       0
-    );
+    ).toFixed(2)
   }, [cartItems]);
 
   const form = useForm({
     resolver: zodResolver(PaymentValidation),
     defaultValues: {
       email: "",
-      amount: totalAmount,
+      amount: Number(totalAmount),
     },
   });
 
@@ -48,6 +48,7 @@ const CustomForm = () => {
 
   const onSubmit = async (values: z.infer<typeof PaymentValidation>) => {
     form.reset();
+    values.amount = Number(values.amount); // Ensure amount is a number
     values.amount = 0; // Clear the amount after submission
   };
 
@@ -87,7 +88,7 @@ const CustomForm = () => {
         />
 
         <Button type="submit">
-          {/* <PaystackIntegration amount={Number(amount)} email={email} /> */}
+          <PaystackIntegration amount={Number(amount)} email={email} />
         </Button>
       </form>
     </Form>

@@ -37,7 +37,7 @@ const PaystackIntegration = ({ amount, email }: Props) => {
   };
 
   const onClose = () => {
-    console.log("Payment window closed");
+    console.log("Payment closed");
   };
 
   const componentProps = {
