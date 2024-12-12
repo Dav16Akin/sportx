@@ -37,10 +37,10 @@ const page = () => {
             Payment
           </TabsTrigger>
         </TabsList>
-        {/* <TabsContent value="Information">
+        <TabsContent value="Information">
           <CustomerInfoForm onInfoSubmit={handleInfoSubmit} />
         </TabsContent>
-        <TabsContent value="Payment">
+        {/* <TabsContent value="Payment">
           <CustomForm/>
         </TabsContent> */}
       </Tabs>
