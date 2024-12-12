@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
 import { UserValidation } from "@/lib/validations/user";
 import { zodResolver } from "@hookform/resolvers/zod";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import {
   Form,
@@ -32,11 +32,15 @@ interface CustomerInfoFormProps {
 const CustomerInfoForm: React.FC<CustomerInfoFormProps> = ({
   onInfoSubmit,
 }) => {
-  countries.registerLocale(en);
+  const [countryList, setCountryList] = useState<{ code: string; name: string }[]>([]);
 
-  const countryList = Object.entries(countries.getNames("en")).map(
-    ([code, name]) => ({ code, name })
-  );
+  useEffect(() => {
+    countries.registerLocale(en);
+    const countriesData = Object.entries(countries.getNames("en")).map(
+      ([code, name]) => ({ code, name })
+    );
+    setCountryList(countriesData);
+  }, []);
 
   const form = useForm({
     resolver: zodResolver(UserValidation),

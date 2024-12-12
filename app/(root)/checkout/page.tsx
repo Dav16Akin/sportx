@@ -8,7 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import React, { useState } from "react";
 
 const page = () => {
-  const [isInfoComplete, setIsInfoComplete] = useState(true);
+  const [isInfoComplete, setIsInfoComplete] = useState(false);
   const [activeTab, setActiveTab] = useState("Information");
 
 
