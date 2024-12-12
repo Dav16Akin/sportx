@@ -40,9 +40,9 @@ const page = () => {
         <TabsContent value="Information">
           <CustomerInfoForm onInfoSubmit={handleInfoSubmit} />
         </TabsContent>
-        {/* <TabsContent value="Payment">
+        <TabsContent value="Payment">
           <CustomForm/>
-        </TabsContent> */}
+        </TabsContent>
       </Tabs>
     </div>
   );

@@ -21,10 +21,10 @@ const Cart = () => {
     (state: RootState) => state.cart.cart.cartItems
   );
 
-  // useEffect(() => {
-  //   // Set isCartOpen to false when the component mounts
-  //   dispatch(setIsCartOpen(false));
-  // }, [dispatch]);
+  useEffect(() => {
+    // Set isCartOpen to false when the component mounts
+    dispatch(setIsCartOpen(false));
+  }, [dispatch]);
 
   useEffect(() => {
     if (isCartOpen) {
@@ -86,7 +86,7 @@ const Cart = () => {
                   {cartItems.reduce(
                     (total, item) => total + item.quantity * item.price,
                     0
-                  )}
+                  ).toFixed(2)}
                 </h1>
               </div>
               <div className=" flex flex-col gap-4 p-4 w-full">

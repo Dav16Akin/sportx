@@ -87,7 +87,7 @@ const CustomForm = () => {
         />
 
         <Button type="submit">
-          <PaystackIntegration amount={Number(amount)} email={email} />
+          {/* <PaystackIntegration amount={Number(amount)} email={email} /> */}
         </Button>
       </form>
     </Form>
