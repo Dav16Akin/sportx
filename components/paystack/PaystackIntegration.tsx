@@ -22,7 +22,7 @@ const PaystackIntegration = ({ amount, email }: Props) => {
     (state: RootState) => state.cart.cart.cartItems
   );
 
-  const publicKey = process.env.NEXT_PUBLIC_PAYSTACK_KEY || ""; // Ensure this is defined
+  const publicKey = process.env.NEXT_PUBLIC_PAYSTACK_KEY || ""; // Ensure this is define
 
   if (amount <= 0) {
     return <p>Invalid amount specified</p>;

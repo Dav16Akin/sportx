@@ -29,10 +29,9 @@ const CustomForm = () => {
   // Compute total amount safely
   const totalAmount = useMemo(() => {
     if (!cartItems) return 0;
-    return cartItems.reduce(
-      (total, item) => total + item.quantity * item.price,
-      0
-    ).toFixed(2)
+    return cartItems
+      .reduce((total, item) => total + item.quantity * item.price, 0)
+      .toFixed(2);
   }, [cartItems]);
 
   const form = useForm({
@@ -87,9 +86,7 @@ const CustomForm = () => {
           )}
         />
 
-        <Button type="submit">
-          <PaystackIntegration amount={Number(amount)} email={email} />
-        </Button>
+        <PaystackIntegration amount={Number(amount)} email={email} />
       </form>
     </Form>
   );
