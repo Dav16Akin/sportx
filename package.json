@@ -34,7 +34,6 @@
     "react-loading-skeleton": "^3.5.0",
     "react-paystack": "^6.0.0",
     "react-redux": "^9.1.2",
-    "react-toastify": "^10.0.6",
     "redux-persist": "^6.0.0",
     "tailwind-merge": "^2.5.4",
     "tailwindcss-animate": "^1.0.7",

@@ -79,11 +79,43 @@
     font-feature-settings: "rlig" 1, "calt" 1;
   }
   h1 {
-    @apply font-mono
+    @apply font-mono;
   }
 
   .no-scroll {
     overflow: hidden;
   }
-}
 
+  .wrapper {
+    gap: 1em;
+    transition: 10s ease;
+    cursor: progress;
+  }
+/* 
+  .wrapper:hover {
+    transform: scale(1.2);
+  } */
+
+  .text {
+    color: black;
+    font-weight: 800;
+  }
+  .dot {
+    background: black;
+    height: 0.65em;
+    width: 0.65em;
+    border-radius: 50%;
+    animation: move 0.6s ease infinite;
+  }
+  @keyframes move {
+    0% {
+      transform: translateX(50%);
+    }
+    50% {
+      transform: translateX(-50%);
+    }
+    100% {
+      transform: translateX(50%);
+    }
+  }
+}

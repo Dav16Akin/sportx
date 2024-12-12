@@ -7,6 +7,8 @@ import Cart from "@/components/shared/Cart";
 import Footer from "@/components/shared/Footer";
 import { Toaster } from "@/components/ui/toaster";
 import Waitlist from "@/components/shared/WaitList";
+import { Suspense } from "react";
+import Loading from "./loading";
 
 export const metadata: Metadata = {
   title: "Sportx - The best sports shop",
@@ -24,7 +26,9 @@ export default function RootLayout({
         <body className={`${montserrat.variable} ${oswald.variable} font-sans`}>
           <Topbar />
           <Cart />
-          <section className="flex flex-col">{children}</section>
+          <section className="flex flex-col justify-center">
+            <Suspense fallback={<Loading/>}>{children}</Suspense>
+          </section>
           <Toaster />
           <div className="w-full bg-white">
             <Waitlist mode="light" />
