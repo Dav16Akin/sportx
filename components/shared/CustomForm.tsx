@@ -18,10 +18,13 @@ import {
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import PaystackIntegration from "../paystack/PaystackIntegration";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/state/store";
+import { clearCart } from "@/state/Features/cart/cartSlice";
 
 const CustomForm = () => {
+  const dispatch = useDispatch();
+
   const cartItems = useSelector(
     (state: RootState) => state.cart.cart.cartItems
   );
@@ -49,6 +52,7 @@ const CustomForm = () => {
     form.reset();
     values.amount = Number(values.amount); // Ensure amount is a number
     values.amount = 0; // Clear the amount after submission
+    dispatch(clearCart({ cartItems }));
   };
 
   return (
@@ -86,7 +90,10 @@ const CustomForm = () => {
           )}
         />
 
-        <PaystackIntegration amount={Number(amount)} email={email} />
+        
+        <Button type="submit">
+          <PaystackIntegration amount={Number(amount)} email={email} />
+        </Button>
       </form>
     </Form>
   );
