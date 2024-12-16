@@ -32,6 +32,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/state/store";
 import { clearCart } from "@/state/Features/cart/cartSlice";
 import { FaCheckCircle } from "react-icons/fa";
+import { redirect } from "next/navigation";
 
 const CustomForm = () => {
   const dispatch = useDispatch();
@@ -62,6 +63,10 @@ const CustomForm = () => {
     values.amount = Number(values.amount); // Ensure amount is a number
     values.amount = 0; // Clear the amount after submission
     dispatch(clearCart({ cartItems }));
+  };
+
+  const handleContinue = () => {
+    redirect("/") // Redirect to the home page
   };
 
   return (
@@ -117,8 +122,7 @@ const CustomForm = () => {
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
-              <AlertDialogCancel>Cancel</AlertDialogCancel>
-              <AlertDialogAction >Continue</AlertDialogAction>
+              <AlertDialogAction onClick={handleContinue} >Continue</AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog>
