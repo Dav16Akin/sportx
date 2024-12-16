@@ -23,13 +23,12 @@ import Image from "next/image";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import Link from "next/link";
 import { useToast } from "@/hooks/use-toast";
+import { TableColumnsSplit } from "lucide-react";
 
 const page = () => {
   const dispatch = useDispatch();
   const { toast } = useToast();
-  const cartItems = useSelector(
-    (state: RootState) => state.cart.cart.cartItems
-  );
+  const cartItems = useSelector((state: RootState) => state.cart.cartItems);
 
   const removeProductFromCart = (id: string) => {
     dispatch(
@@ -71,7 +70,7 @@ const page = () => {
   };
 
   return (
-    <div className="m-14">
+    <div className="m-14 max-sm:m-2">
       <div className="bg-white flex flex-col">
         <div className="flex justify-between items-center p-2">
           <h1 className="text-4xl">Cart</h1>
@@ -83,7 +82,7 @@ const page = () => {
         </div>
 
         <div>
-          <div>
+          <div className="max-sm:hidden">
             <Table>
               <TableCaption>A list of your products in your cart</TableCaption>
               <TableHeader>
@@ -168,9 +167,94 @@ const page = () => {
               </TableFooter>
             </Table>
           </div>
+
+          <div className="lg:hidden md:hidden">
+            {cartItems.map((cartItem) => (
+              <div className="flex flex-col mb-4 border">
+                <div className="flex p-4">
+                  <IoCloseCircleOutline
+                    size="30px"
+                    onClick={() => removeProductFromCart(cartItem.id)}
+                    className="cursor-pointer"
+                  />
+                </div>
+                <div className="flex justify-center items-center p-4">
+                  <div className="relative w-16 h-16">
+                    <Image
+                      src={cartItem.imgUrl}
+                      alt={cartItem.name}
+                      layout="fill"
+                      className="object-cover"
+                    />
+                  </div>
+                </div>
+                <div className="flex justify-between p-2">
+                  <p>product:</p>
+                  <p>${cartItem.price}</p>
+                </div>
+                <div className="flex justify-between p-2">
+                  <p>Quantity:</p>
+                  <div className="flex">
+                    <Button
+                      onClick={() => reduceQuantity(cartItem.id)}
+                      variant="outline"
+                      className="rounded-none border-gray-700 text-lg"
+                    >
+                      -
+                    </Button>
+                    <p className="border-y border-gray-700 w-10 flex justify-center items-center text-lg">
+                      {cartItem.quantity}
+                    </p>
+                    <Button
+                      onClick={() =>
+                        increaseQuantity(
+                          cartItem.id,
+                          cartItem.name,
+                          cartItem.imgUrl,
+                          cartItem.price
+                        )
+                      }
+                      variant="outline"
+                      className="rounded-none border-gray-700 text-lg"
+                    >
+                      +
+                    </Button>
+                  </div>
+                </div>
+                <div className="flex justify-between p-2">
+                  <p>Subtotal:</p>
+                  <p>{cartItem.price * cartItem.quantity}</p>
+                </div>
+              </div>
+            ))}
+
+            <div className="border">
+              <div className="bg-gray-300">
+                <h1>Cart totals</h1>
+              </div>
+
+              <div>
+                <div className="flex justify-between p-4">
+                  <p>Total:</p>
+                  <p>
+                    $
+                    {cartItems.reduce(
+                      (total, item) => total + item.quantity * item.price,
+                      0
+                    )}
+                  </p>
+                </div>
+              </div>
+
+              <Link className="w-full" href="/checkout">
+                <Button className="p-4 m-4 bg-black">Buy now</Button>
+              </Link>
+            </div>
+          </div>
         </div>
-        <Link className="w-full" href="/checkout">
-          <Button className="p-4 m-14 bg-black">Buy now</Button>
+        
+        <Link className="w-full max-sm:hidden" href="/checkout">
+          <Button className="p-4 m-4 bg-black">Checkout</Button>
         </Link>
       </div>
     </div>

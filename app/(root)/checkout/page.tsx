@@ -20,7 +20,7 @@ const page = () => {
   };
 
   return (
-    <div className="p-24 m-10 bg-white">
+    <div className="p-24 max-sm:p-4 max-sm:m-2 m-10 bg-white">
       <div>
         <h1 className="text-4xl">Checkout</h1>
       </div>

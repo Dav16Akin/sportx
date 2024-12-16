@@ -7,11 +7,11 @@ const page = () => {
   return (
     <div className="flex flex-col w-full p-8">
       <h1>Home/Women</h1>
-      <div className="grid grid-cols-4 gap-2 py-8">
+      <div className="grid grid-cols-4 max-sm:grid-cols-2 max-sm:gap-4 gap-2 py-8">
         {shopData
           .filter(
             (item) =>
-              item.category.includes("women") || item.category.includes("shoes")
+              item.category.includes("wo") || item.category.includes("shoes")
           )
           .map((data) => {
             return (

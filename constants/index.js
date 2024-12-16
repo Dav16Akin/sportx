@@ -58,24 +58,24 @@ export const shopData = [
     id: 12,
     name: "Sport wear pink",
     price: 51.99,
-    imgUrl: "/assets/women/women4.jpg",  category: "clothing women"
+    imgUrl: "/assets/women/women4.jpg",  category: "clothing wo"
   },
   {
     id: 13,
     name: "Sport wear/ skirt /white",
     price: 100.99,
-    imgUrl: "/assets/women/women1.jpg", category: "clothing women"
+    imgUrl: "/assets/women/women1.jpg", category: "clothing wo"
   },
   {
     id: 14,
     name: "Sport wear gray",
     price: 51.99,
-    imgUrl: "/assets/women/women2.jpg", category: "clothing women"
+    imgUrl: "/assets/women/women2.jpg", category: "clothing wo"
   },
   {
     id: 15,
     name: "Rain wear",
     price: 29.99,
-    imgUrl: "/assets/women/women3.jpg", category: "clothing women"
+    imgUrl: "/assets/women/women3.jpg", category: "clothing wo"
   },
 ];

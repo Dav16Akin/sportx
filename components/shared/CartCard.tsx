@@ -18,7 +18,7 @@ const CartCard = ({ id, name, imgUrl, price, quantity }: Props) => {
   const dispatch = useDispatch();
 
   const cartItems = useSelector(
-    (state: RootState) => state.cart.cart.cartItems
+    (state: RootState) => state.cart.cartItems
   );
 
   const removeProductFromCart = () => {

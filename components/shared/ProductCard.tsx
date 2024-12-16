@@ -12,6 +12,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import Card from "./Card";
 import { shopData } from "@/constants";
+import Link from "next/link";
 
 interface Props {
   id: number;
@@ -24,8 +25,9 @@ interface Props {
 const ProductCard = ({ id, imgUrl, name, price, category }: Props) => {
   const { toast } = useToast();
   const cartItems = useSelector(
-    (state: RootState) => state.cart.cart.cartItems
+    (state: RootState) => state.cart.cartItems
   );
+
   const dispatch = useDispatch();
 
   const addProductToCart = () => {
@@ -61,8 +63,8 @@ const ProductCard = ({ id, imgUrl, name, price, category }: Props) => {
 
   return (
     <div>
-      <div className="flex flex-row justify-evenly gap-4">
-        <div className="w-96 h-96 relative">
+      <div className="flex flex-row max-sm:flex-col max-sm:items-center max-sm:w-full justify-evenly gap-4">
+        <div className="w-96 h-96 max-sm:w-60 max-sm:h-60 relative">
           <Image
             src={imgUrl}
             alt={name}
@@ -71,12 +73,12 @@ const ProductCard = ({ id, imgUrl, name, price, category }: Props) => {
           />
         </div>
 
-        <div className="flex flex-col w-7/12">
+        <div className="flex flex-col w-7/12 max-sm:w-full">
           <div className="border-b pb-4">
             <p>Home/{name}</p>
             <h1 className="text-4xl my-4">{name}</h1>
             <h2 className="text-2xl font-semibold">{"$" + price}</h2>
-            <p>
+            <p className=" max-sm:text-[10px] ">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit.
               Voluptates libero autem fugiat dignissimos magni minus temporibus
               eligendi eius molestiae nostrum consectetur sint explicabo, aut
@@ -89,7 +91,7 @@ const ProductCard = ({ id, imgUrl, name, price, category }: Props) => {
               ducimus!
             </p>
           </div>
-          <div className="flex gap-10 py-4">
+          <div className="flex max-sm:flex-col max-sm:gap-4 gap-10 py-4">
             <div className="flex">
               <Button
                 onClick={reduceQuantity}
@@ -115,6 +117,8 @@ const ProductCard = ({ id, imgUrl, name, price, category }: Props) => {
             >
               Add to cart
             </Button>
+
+            {cartItems.length > 0 ? <Link className="underline text-center lg:hidden md:hidden" href="/cart">View cart</Link> : <p></p>}
           </div>
         </div>
       </div>
@@ -130,7 +134,7 @@ const ProductCard = ({ id, imgUrl, name, price, category }: Props) => {
             </TabsTrigger>
           </TabsList>
           <TabsContent value="description">
-            <p>
+            <p className="max-sm:text-xs">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum
               beatae deleniti hic sapiente, temporibus dolores labore natus
               aliquid adipisci consectetur nisi nulla nemo, maxime ad
@@ -141,7 +145,7 @@ const ProductCard = ({ id, imgUrl, name, price, category }: Props) => {
               nesciunt, neque nam! Laborum, asperiores sunt?
             </p>
             <br />
-            <p>
+            <p className="max-sm:text-xs">
               Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ea quia
               suscipit placeat blanditiis? Ullam repellat laboriosam non
               asperiores?
@@ -152,7 +156,7 @@ const ProductCard = ({ id, imgUrl, name, price, category }: Props) => {
       </div>
 
       <div className="mt-12 w-full">
-        <h1 className="text-6xl">Related Products</h1>
+        <h1 className="text-6xl max-sm:text-3xl">Related Products</h1>
         <div className="flex flex-wrap gap-8 mt-12">
           {shopData
             .filter(

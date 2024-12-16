@@ -7,7 +7,7 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
   const data = shopData.filter((item) => String(item.id) === id);
 
   return (
-    <div className="p-24 m-10 bg-white">
+    <div className="p-24 max-sm:p-2 m-10 max-sm:m-2 bg-white">
       {data.map((info) => (
         <ProductCard
           key={info.id}

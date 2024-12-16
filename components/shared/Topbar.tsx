@@ -7,13 +7,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/state/store";
 import { setIsCartOpen } from "@/state/Features/cart/cartSlice";
 import { usePathname } from "next/navigation";
+import { GiHamburgerMenu } from "react-icons/gi";
+import { setIsSiderbarOpen } from "@/state/Features/sidebar/sidebarSlice";
 
 const Topbar = () => {
   const isCartOpen = useSelector(
-    (state: RootState) => state.cart.cart.isCartOpen
+    (state: RootState) => state.cart.isCartOpen
+  );
+
+  const isSidebarOpen = useSelector(
+    (state: RootState) => state.sidebar.isSidebarOpen
   );
   const cartItems = useSelector(
-    (state: RootState) => state.cart.cart.cartItems
+    (state: RootState) => state.cart.cartItems
   );
   const dispatch = useDispatch();
   const pathname = usePathname();
@@ -22,10 +28,14 @@ const Topbar = () => {
     document.body.classList.add("no-scroll");
     dispatch(setIsCartOpen(!isCartOpen));
   };
-  
+
+  const toggleSidebar = () => {
+    dispatch(setIsSiderbarOpen(!isSidebarOpen))
+    console.log("open");
+  }
 
   return (
-    <section className="flex justify-between items-center bg-white text-inherit sticky h-16 px-20">
+    <section className="flex justify-between items-center bg-white text-inherit sticky h-16 px-20 max-sm:px-4">
       <div className="flex flex-row gap-12 items-center">
         <div className="flex items-center">
           <h1 className="text-3xl font-bold">
@@ -34,7 +44,8 @@ const Topbar = () => {
             </Link>
           </h1>
         </div>
-        <div className="flex items-center gap-8 uppercase">
+
+        <div className="flex items-center max-sm:hidden gap-8 uppercase">
           {topbarLinks.map((data) => {
             const isActive =
               (pathname.includes(data.route) && data.route.length > 1) ||
@@ -54,11 +65,17 @@ const Topbar = () => {
         </div>
       </div>
 
-      <div className="flex gap-8">
-        <span className="font-semibold text-red-500">${cartItems.reduce(
-                        (total, item) => total + item.quantity * item.price,
-                        0
-                      ).toFixed(2)}</span>
+      <div onClick={toggleSidebar} className="border cursor-pointer p-2 border-black lg:hidden md:hidden">
+        <GiHamburgerMenu />
+      </div>
+
+      <div className="flex gap-8 max-sm:hidden">
+        <span className="font-semibold text-red-500">
+          $
+          {cartItems
+            .reduce((total, item) => total + item.quantity * item.price, 0)
+            .toFixed(2)}
+        </span>
         <div className="relative">
           <IoCartSharp
             onClick={toggleCart}

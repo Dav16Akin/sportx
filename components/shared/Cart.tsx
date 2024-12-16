@@ -15,10 +15,10 @@ const Cart = () => {
   const dispatch = useDispatch();
 
   const isCartOpen = useSelector(
-    (state: RootState) => state.cart.cart.isCartOpen
+    (state: RootState) => state.cart.isCartOpen
   );
   const cartItems = useSelector(
-    (state: RootState) => state.cart.cart.cartItems
+    (state: RootState) => state.cart.cartItems
   );
 
   useEffect(() => {

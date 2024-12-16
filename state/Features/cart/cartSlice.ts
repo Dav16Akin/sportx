@@ -14,15 +14,11 @@ export interface CartItem {
 export interface CartState {
   isCartOpen: boolean;
   cartItems: CartItem[];
-  total: number;
-  priceTotal: number;
 }
 
 const initialState: CartState = {
   cartItems: [],
   isCartOpen: false,
-  total: 0,
-  priceTotal: 0,
 };
 
 export const cartSlice = createSlice({

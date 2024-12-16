@@ -1,10 +1,6 @@
-"use client";
-
-export const dynamic = "force-dynamic";
-
-import { useRouter } from "next/navigation";
-import React from "react";
-import { PaystackButton } from "react-paystack";
+import axios from 'axios';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 
 interface Props {
   amount: number;
@@ -13,35 +9,54 @@ interface Props {
 
 const PaystackIntegration = ({ amount, email }: Props) => {
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
-  const publicKey = process.env.NEXT_PUBLIC_PAYSTACK_KEY || ""; // Ensure this is define
+  const handlePayment = async () => {
+    setLoading(true);
+    const publicKey = process.env.NEXT_PUBLIC_PAYSTACK_KEY;
+    const secretKey = process.env.PAYSTACK_SECRET_KEY;
 
-  if (amount <= 0) {
-    return <p>Invalid amount specified</p>;
-  }
+    const amountInKobo = amount * 100; // Convert amount to kobo
 
-  const AMOUNT = amount * 100; // Amount in kobo (e.g., 5000 NGN = 5000 * 100 kobo)
+    try {
+      const response = await axios.post('https://api.paystack.co/transaction/initialize', {
+        email,
+        amount: amountInKobo,
+        public_key: publicKey,
+      }, {
+        headers: {
+          Authorization: `Bearer ${secretKey}`,
+        },
+      });
 
-  const onSuccess = (reference: any) => {
-    console.log("Payment successful:", reference);
- 
-    router.push("/"); // Use router for client-side navigation
+      if (response.data.status === 'success') {
+        const authorizationUrl = response.data.data.authorization_url;
+        window.location.href = authorizationUrl; // Redirect the user to Paystack
+      } else {
+        console.error('Payment initialization failed:', response.data.message);
+      }
+    } catch (error) {
+      console.error('Payment error:', error);
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const onClose = () => {
-    console.log("Payment closed");
-  };
 
-  const componentProps = {
-    email,
-    amount: AMOUNT,
-    publicKey,
-    text: "Confirm Payment",
-    onSuccess,
-    onClose,
-  };
+  useEffect(() => {
+    // Cleanup function to handle any necessary actions when the component unmounts
+    return () => {
+      // Example: Clean up any lingering HTTP requests or events
+      // If there were timers, we would clear them here
+      console.log('Component unmounted or rerendered, cleaning up...');
+    };
+  }, []);
 
-  return <PaystackButton {...componentProps} />;
+  return (
+    <button onClick={handlePayment} disabled={loading}>
+      {loading ? 'Processing...' : 'Confirm Payment'}
+    </button>
+  );
 };
 
 export default PaystackIntegration;

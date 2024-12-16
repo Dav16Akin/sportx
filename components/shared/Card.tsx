@@ -22,7 +22,7 @@ interface Props {
 const Card = ({ id, label, price, imgUrl, category }: Props) => {
   const { toast } = useToast();
   const cartItems = useSelector(
-    (state: RootState) => state.cart.cart.cartItems
+    (state: RootState) => state.cart.cartItems
   );
   const dispatch = useDispatch();
 
@@ -42,7 +42,7 @@ const Card = ({ id, label, price, imgUrl, category }: Props) => {
   };
   return (
     <Link href={`/product/${id}`} className="flex flex-col">
-      <div className="w-72 h-72 relative overflow-hidden">
+      <div className="w-72 h-72 max-sm:w-32 max-sm:h-32 relative overflow-hidden">
         <Image
           src={imgUrl}
           alt={label}
@@ -68,7 +68,7 @@ const Card = ({ id, label, price, imgUrl, category }: Props) => {
       </div>
 
       <div className="space-y-2 py-4">
-        <h1 className="text-2xl">{label}</h1>
+        <h1 className="text-2xl max-sm:text-lg">{label}</h1>
         <p>{"$" + price}</p>
       </div>
     </Link>

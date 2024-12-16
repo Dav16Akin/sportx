@@ -5,9 +5,9 @@ import Loading from "../shop/loading";
 
 const page = () => {
   return (
-    <div className="flex flex-col w-full p-8">
+    <div className="flex flex-col w-full p-8 max-sm:justify-center">
       <h1>Home/Men</h1>
-      <div className="grid grid-cols-4 gap-2 py-8">
+      <div className="grid grid-cols-4 max-sm:grid-cols-2 max-sm:grid-4 gap-2 py-8">
         {shopData
           .filter(
             (item) =>

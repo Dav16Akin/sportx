@@ -15,19 +15,28 @@ import {
   FormLabel,
   FormMessage,
 } from "../ui/form";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
-import PaystackIntegration from "../paystack/PaystackIntegration";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/state/store";
 import { clearCart } from "@/state/Features/cart/cartSlice";
+import { FaCheckCircle } from "react-icons/fa";
 
 const CustomForm = () => {
   const dispatch = useDispatch();
 
-  const cartItems = useSelector(
-    (state: RootState) => state.cart.cart.cartItems
-  );
+  const cartItems = useSelector((state: RootState) => state.cart.cartItems);
 
   // Compute total amount safely
   const totalAmount = useMemo(() => {
@@ -90,10 +99,29 @@ const CustomForm = () => {
           )}
         />
 
-        
-        <Button type="submit">
-          <PaystackIntegration amount={Number(amount)} email={email} />
-        </Button>
+        <AlertDialog>
+          <Button type="submit">
+            <AlertDialogTrigger>Confirm payment</AlertDialogTrigger>
+          </Button>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Success</AlertDialogTitle>
+              <AlertDialogDescription>
+                <div className="">
+                  <div>
+                    <FaCheckCircle
+                    size="50px" />
+                  </div>
+                  <h1>Payment Successful</h1>
+                </div>
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Cancel</AlertDialogCancel>
+              <AlertDialogAction >Continue</AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
       </form>
     </Form>
   );
