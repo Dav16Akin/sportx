@@ -45,10 +45,10 @@ const Sidebar = () => {
             className="w-full h-full fixed inset-0 z-50 top-0 left-0 bg-gray-300 opacity-85"
           />
           <motion.div
-            initial={{ x: -1000 }}
+            initial={{ x: -200 }}
             animate={{ x: 1 }}
             transition={{ duration: 0.5, ease: "linear" }}
-            className=" w-80 bg-white flex flex-col border h-full fixed right-0 top-0 z-50"
+            className=" w-80 bg-white flex flex-col border h-full fixed left-0 top-0 z-50"
           >
             <div className="w-full justify-between p-4 border-b ">
               <p></p>

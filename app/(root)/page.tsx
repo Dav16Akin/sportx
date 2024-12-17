@@ -10,11 +10,11 @@ export default function Home() {
   return (
     <section className="">
       <div>
-        <div className="w-full min-h-screen max-sm:h-98 relative flex items-center justify-center">
-          <div className="w-full h-screen max-sm:h-98 bg-black opacity-45 z-10 absolute"></div>
+        <div className="w-full h-screen max-sm:h-[500px] relative flex items-center justify-center">
+          <div className="w-full h-screen max-sm:h-[500px] top-0 bg-black opacity-45 z-10 absolute"></div>
           <Image src={banner} alt="Banner" layout="fill" className="max-sm:object-cover" />
-          <div className="z-20 absolute text-white  top-1/4 max-sm:top-32 text-center flex flex-col items-center gap-8">
-            <h1 className="font-bold text-8xl max-sm:text-4xl">Let's Level Up Your Game</h1>
+          <div className="z-20 absolute text-white  top-1/4 max-sm:top-24 text-center flex flex-col items-center gap-8">
+            <h1 className="font-bold text-8xl max-sm:text-6xl">Let's Level Up Your Game</h1>
             <p className="w-1/2 max-sm:text-[10px]">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi
               iure explicabo sint numquam tempore, doloremque obcaecati ipsum 
